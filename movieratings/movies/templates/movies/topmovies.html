@@ -1,0 +1,15 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+    <h2>Top 20 Movies</h2>
+
+    {% for movie in top_20_movies %}
+        <div>
+        <p>
+            <ul>
+            <li>{{ movie }} {{ movie.average_rating }}</li>
+            </ul>
+        </p>
+        </div>
+    {% endfor %}
+{% endblock %}

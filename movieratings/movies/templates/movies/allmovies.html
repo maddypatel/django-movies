@@ -1,0 +1,16 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+    <h2>All Movies</h2>
+
+    {% for movie in movies %}
+        <div>
+        <p>
+            <ul>
+            <li>{{ movie }} {{ movie.average_rating }}</li>
+            </ul>
+        </p>
+        </div>
+    {% endfor %}
+{% endblock %}
+</html>
