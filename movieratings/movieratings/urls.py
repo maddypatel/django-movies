@@ -19,6 +19,7 @@ from movies import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^topmovies', views.topmovies, name='index'),
+    url(r'^topmovies', views.topmovies, name='topmovies'),
     url(r'^allmovies', views.allmovies, name='allmovies'),
+    url(r'^allraters', views.allraters, name='allraters'),
 ]
