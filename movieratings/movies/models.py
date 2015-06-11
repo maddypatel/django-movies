@@ -5,23 +5,26 @@ from django.contrib.auth.models import User
 
 class Rater(models.Model):
     age = models.IntegerField()
-    gender = models.CharField(max_length=1)
-    occupation = models.CharField(max_length=30)
-    zip_code = models.IntegerField()
+    zip_code = models.CharField(max_length=10)
 
     def __str__(self):
-        return "{}".format(self.uid)
+        return "Rater {}".format(self.id)
 
 
-class Movies(models.Model):
-    title = models.CharField(max_length=100)
-    genre = models.CharField(max_length=100)
+class Movie(models.Model):
+    title = models.CharField(max_length=255)
 
     def __str__(self):
-        return "Title - {}, Genre - {}".format(self.title, self.genre)
+        return self.title
+
+    def average_rating(self):
+        return self.rating_set.all().aggregate(models.Avg('rating'))['rating__avg']
 
 
-class Ratings(models.Model):
+class Rating(models.Model):
     rating = models.IntegerField()
     rater = models.ForeignKey(Rater)
-    movie = models.ForeignKey(Movies)
+    movie = models.ForeignKey(Movie)
+
+    def __str__(self):
+        return "{} / {}".format(self.movie, self.rater)
