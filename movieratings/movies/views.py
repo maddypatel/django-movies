@@ -29,3 +29,19 @@ def allraters(request):
         'raters': raters,
     })
     return HttpResponse(template.render(context))
+
+def movie(request, movie_id):
+    movie = Movie.objects.get(pk = movie_id)
+    template = loader.get_template('movies/movie.html')
+    context = RequestContext(request, {
+        'movie': movie,
+    })
+    return HttpResponse(template.render(context))
+
+def rater(request, rater_id):
+    rater = Rater.objects.get(pk = rater_id)
+    template = loader.get_template('movies/rater.html')
+    context = RequestContext(request, {
+        'rater': rater,
+    })
+    return HttpResponse(template.render(context))

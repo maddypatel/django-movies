@@ -7,7 +7,7 @@
         <div>
         <p>
             <ul>
-            <li>{{ rater }} {{ movie.average_rating }}</li>
+            <li><a href="{% url 'rater' rater.id %}">{{ rater }} - Age: {{ rater.age }} - Zip: {{ rater.zip_code }}</li>
             </ul>
         </p>
         </div>

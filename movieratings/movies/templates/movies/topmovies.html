@@ -2,14 +2,11 @@
 
 {% block content %}
     <h2>Top 20 Movies</h2>
-
+    <ol>
     {% for movie in top_20_movies %}
         <div>
-        <p>
-            <ul>
-            <li>{{ movie }} {{ movie.average_rating }}</li>
-            </ul>
-        </p>
+            <li>{{ movie }} Averate Rating: {{ movie.average_rating|floatformat:2 }}</li>
         </div>
     {% endfor %}
+    </ol>
 {% endblock %}

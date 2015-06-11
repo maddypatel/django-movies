@@ -1,13 +1,14 @@
 {% extends "movies/base.html" %}
 
 {% block content %}
-    <h2>All Movies</h2>
+    <h2>Movie</h2>
+    <h3>Title: {{ movie.title }}</h3>
 
     {% for movie in movies %}
         <div>
         <p>
             <ul>
-            <li><a href="{% url 'movie' movie.id %}">{{ movie }} {{ movie.average_rating|floatformat:2 }}</li>
+            <li>{{ movie }} {{ movie.average_rating }}</li>
             </ul>
         </p>
         </div>
