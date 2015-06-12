@@ -1,10 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.contrib.auth import authenticate, login
 from .models import Movie, Rating, Rater
 from django.db.models import Avg
+from movies.forms import UserForm
 
 # Create your views here.
+
+def index(request):
+    movies = Movie.objects.all()
+    return render(request,
+                  "movies/allmovies.html",
+                  {"m": movies})
 
 def topmovies(request):
     top_20_movies = Movie.objects.annotate(average = Avg('rating__rating')).order_by('-average')
@@ -45,3 +53,23 @@ def rater(request, rater_id):
         'rater': rater,
     })
     return HttpResponse(template.render(context))
+
+def user_register(request):
+    if request.method == "GET":
+        user_form = UserForm()
+    elif request.method == "POST":
+        user_form = UserForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            password = user.password
+            user.set_password(password)
+            user.save()
+
+            user = authenticate(username = user.username,
+                                password = password)
+            login(request, user)
+
+            return redirect('index')
+    return render(request, "movies/register.html",
+                  {'user_form': user_form})
+

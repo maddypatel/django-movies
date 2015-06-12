@@ -3,15 +3,11 @@
 {% block content %}
     <h2>Movie</h2>
     <h3>Title: {{ movie.title }}</h3>
+    <h4>Average Rating: {{ movie.average_rating|floatformat:2 }}</h4>
 
-    {% for movie in movies %}
-        <div>
-        <p>
+    {% for rater in raters %}
             <ul>
-            <li>{{ movie }} {{ movie.average_rating }}</li>
+            <li><a href="{% url 'rater' rater.id %}">User {{ rater.id }}</a></li>
             </ul>
-        </p>
-        </div>
     {% endfor %}
 {% endblock %}
-</html>

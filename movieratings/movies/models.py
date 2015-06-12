@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Rater(models.Model):
     age = models.IntegerField()
     zip_code = models.CharField(max_length=10)
+    user = models.OneToOneField(User, null=True)
 
     def __str__(self):
         return "Rater {}".format(self.id)
@@ -28,3 +29,13 @@ class Rating(models.Model):
 
     def __str__(self):
         return "{} / {}".format(self.movie, self.rater)
+
+def create_user():
+    for rater in Rater.objects.all():
+        user = User.objects.create_user(
+            "user{}".format(rater.id),
+            "user{}@theironyard.com".format(rater.id),
+            "user{}".format(rater.id)
+        )
+        rater.user = user
+        rater.save()
