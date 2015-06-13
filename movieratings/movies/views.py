@@ -40,17 +40,21 @@ def allraters(request):
 
 def movie(request, movie_id):
     movie = Movie.objects.get(pk = movie_id)
+    ratings = movie.rating_set.all()
     template = loader.get_template('movies/movie.html')
     context = RequestContext(request, {
         'movie': movie,
+        'ratings': ratings,
     })
     return HttpResponse(template.render(context))
 
 def rater(request, rater_id):
     rater = Rater.objects.get(pk = rater_id)
+    ratings = rater.rating_set.all()
     template = loader.get_template('movies/rater.html')
     context = RequestContext(request, {
         'rater': rater,
+        'ratings': ratings,
     })
     return HttpResponse(template.render(context))
 

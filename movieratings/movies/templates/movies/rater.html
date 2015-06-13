@@ -5,5 +5,11 @@
     <h3>Rater: {{ rater.id }}</h3>
     <h4>Age: {{ rater.age }}</h4>
     <h4>Zip Code: {{ rater.zip_code }}</h4>
+    <h4>Movies rated by above user.</h4>
+    {% for rating in ratings %}
+        <ul>
+            <li><a href="{% url 'movie' rating.movie.id %}"> {{ rating.movie.title }}</a> Rating: {{ rating.rating }}</li>
+        </ul>
+    {% endfor %}
 {% endblock %}
 </html>

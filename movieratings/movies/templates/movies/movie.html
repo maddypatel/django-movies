@@ -4,10 +4,10 @@
     <h2>Movie</h2>
     <h3>Title: {{ movie.title }}</h3>
     <h4>Average Rating: {{ movie.average_rating|floatformat:2 }}</h4>
-
-    {% for rater in raters %}
+    <h4>Following users rated the above movie.</h4>
+    {% for rating in ratings %}
             <ul>
-            <li><a href="{% url 'rater' rater.id %}">User {{ rater.id }}</a></li>
+            <li><a href="{% url 'rater' rating.rater.id %}">User {{ rating.rater.id }}</a> Rating: {{ rating.rating }}</li>
             </ul>
     {% endfor %}
 {% endblock %}
