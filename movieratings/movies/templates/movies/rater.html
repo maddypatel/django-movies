@@ -11,5 +11,9 @@
             <li><a href="{% url 'movie' rating.movie.id %}"> {{ rating.movie.title }}</a> Rating: {{ rating.rating }}</li>
         </ul>
     {% endfor %}
+    <h4>Movies not rated by the above user.</h4>
+    {% for movie in not_rated %}
+        <li><a href="{% url 'movie' movie.movie.id %}"> {{ movie.movie.title }}</li>
+    {% endfor %}
 {% endblock %}
 </html>
