@@ -12,8 +12,17 @@ class Rater(models.Model):
         return "Rater {}".format(self.id)
 
 
+class Genre(models.Model):
+    genre = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.genre
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=255)
+    genres = models.ManyToManyField(Genre)
+    #raters = models.ManyToManyField(Rater, through='Rating')
 
     def __str__(self):
         return self.title
@@ -26,6 +35,7 @@ class Rating(models.Model):
     rating = models.IntegerField()
     rater = models.ForeignKey(Rater)
     movie = models.ForeignKey(Movie)
+    timestamp = models.DateTimeField()
 
     def __str__(self):
         return "{} / {}".format(self.movie, self.rater)

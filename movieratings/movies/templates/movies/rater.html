@@ -13,7 +13,7 @@
     {% endfor %}
     <h4>Movies not rated by the above user.</h4>
     {% for movie in not_rated %}
-        <li><a href="{% url 'movie' movie.movie.id %}"> {{ movie.movie.title }}</li>
+        <li><a href="{% url 'movie' movie.id %}"> {{ movie.title }}</li>
     {% endfor %}
 {% endblock %}
 </html>

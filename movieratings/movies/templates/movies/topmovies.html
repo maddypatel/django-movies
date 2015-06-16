@@ -5,7 +5,7 @@
     <ol>
     {% for movie in top_20_movies %}
         <div>
-            <li>{{ movie }} Averate Rating: {{ movie.average_rating|floatformat:2 }}</li>
+            <li><a href="{% url 'movie' movie.id %}">{{ movie }}</a> Averate Rating: {{ movie.average_rating|floatformat:2 }}</li>
         </div>
     {% endfor %}
     </ol>
