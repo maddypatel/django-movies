@@ -60,3 +60,12 @@ docs/_build/
 target/
 
 data/
+.DS_Store
+.direnv/
+.envrc
+convert_ml_1m_data.py
+ml-1m/
+movieratings/.DS_Store
+movieratings/.idea/
+movieratings/fixtures/
+movieratings/db.sqlite3
