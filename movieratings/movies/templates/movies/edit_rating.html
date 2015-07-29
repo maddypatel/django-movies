@@ -1,0 +1,13 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+    <h2>Edit Rating</h2>
+    <h3>Title: {{ movie.title }}</h3>
+    <form method="POST" action="{% url 'edit_rating' movie.id %}">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+
+        <!-- Provide a button to click to submit the form. -->
+        <input type="submit" name="submit" value="Edit"/>
+    </form>
+{% endblock %}

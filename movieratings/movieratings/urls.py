@@ -27,4 +27,7 @@ urlpatterns = [
     url(r'^movie/(?P<movie_id>\d+)$', views.movie, name='movie'),
     url(r'^rater/(?P<rater_id>\d+)$', views.rater, name='rater'),
     url(r'^register$', views.user_register, name='user_register'),
+    url(r'^rate/(?P<movie_id>\d*)$', views.rate_movie, name='rate_movie'),
+    url(r'^edit_rating/(?P<movie_id>\d*)$', views.edit_rating, name='edit_rating'),
+    url(r'^delete_rating/(?P<rating_id>\d*)$', views.delete_rating, name='delete_rating'),
 ]

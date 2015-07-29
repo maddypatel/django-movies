@@ -8,12 +8,36 @@
     <h4>Movies rated by above user.</h4>
     {% for rating in ratings %}
         <ul>
-            <li><a href="{% url 'movie' rating.movie.id %}"> {{ rating.movie.title }}</a> Rating: {{ rating.rating }}</li>
+            <li><a href="{% url 'movie' rating.movie.id %}"> {{ rating.movie.title }}</a> Rating: {{ rating.rating }}
+                <form method="POST" action="{% url 'edit_rating' movie.id %}">
+                    {% csrf_token %}
+                    {{ edit_form.as_p }}
+
+                    <!-- Provide a button to click to submit the form. -->
+                    <input type="submit" name="submit" value="Edit Rating"/>
+                </form>
+                <form method="POST" action="{% url 'delete_rating' rating.id %}">
+                    {% csrf_token %}
+
+                    <!-- Provide a button to click to submit the form. -->
+                    <input type="submit" name="submit" value="Delete Rating"/>
+                </form>
+
+            </li>
         </ul>
     {% endfor %}
     <h4>Movies not rated by the above user.</h4>
     {% for movie in not_rated %}
-        <li><a href="{% url 'movie' movie.id %}"> {{ movie.title }}</li>
+        <li>
+            <a href="{% url 'movie' movie.id %}"> {{ movie.title }}
+                <form method="POST" action="{% url 'rate_movie' movie.id %}">
+                    {% csrf_token %}
+                    {{ rating_form.as_p }}
+
+                    <!-- Provide a button to click to submit the form. -->
+                    <input type="submit" name="submit" value="Rate Movie"/>
+                </form>
+        </li>
     {% endfor %}
 {% endblock %}
 </html>
