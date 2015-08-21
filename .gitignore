@@ -69,3 +69,4 @@ movieratings/.DS_Store
 movieratings/.idea/
 movieratings/fixtures/
 movieratings/db.sqlite3
+.idea/
